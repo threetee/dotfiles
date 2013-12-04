@@ -1,0 +1,23 @@
+# Binds {{{
+# Prefix
+unbind C-b
+set-option -g prefix C-a
+bind a send-prefix
+
+# Enable mouse support in ~/.tmux.conf
+#set-option -g mouse-select-pane on
+#set-option -g mouse-select-window on
+#set-window-option -g mode-mouse on
+
+# start window numbers at 1 to match keyboard order with tmux window order
+set -g base-index 1
+
+# reload tmux config
+bind-key r source-file ~/.tmux.conf
+
+# open new SSH session
+bind-key S command-prompt -p ssh: "new-window -n %1 'ssh %1'"
+
+# use | and - for horizontal and vertical splits, respectively
+bind-key | split-window -h
+bind-key - split-window -v
