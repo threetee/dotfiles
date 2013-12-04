@@ -1,0 +1,7 @@
+#!/bin/sh
+
+URL=$1
+
+echo
+echo "Measuring $URL"
+curl -s -k -o /dev/null -w "Connect: %{time_connect} TTFB: %{time_starttransfer} Total time: %{time_total} \n" $URL

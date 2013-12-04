@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'rdiscount'
+rescue LoadError
+  `gem install rdiscount`
+  require 'rdiscount'
+end
+
+rdiscount="/Users/alex/.rvm/gems/ruby-1.9.2-p290/bin/rdiscount"
+
+input = ARGV[0]
+input_dir = File.dirname input
+
+require 'rdiscount'
+markdown = RDiscount.new(File.read(input))
+html = markdown.to_html
+
+page = <<HTML
+<head>
+<style>
+body {
+  font-family: georgia, arial, helvetica;
+  padding: 1em;
+}
+p {
+  max-width: 40em;
+}
+h1 {
+  background-color: #f1f1fd;
+  border-bottom: 1px solid blue;
+  padding: .25em 1em;
+  margin: 1em -1em .25em;
+}
+</style>
+</head>
+<body>
+  #{html}
+HTML
+
+html_file = File.basename(input).gsub(/\.md$/, '.html')
+output = "#{input_dir}/#{html_file}"
+
+File.open(output, "w") do |f|
+  f.write(page)
+end
+cmd = "open #{output}"
+puts `#{cmd}`
