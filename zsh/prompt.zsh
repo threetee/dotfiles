@@ -72,6 +72,14 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
+chefvm_version() {
+  if (( $+commands[chefvm] ))
+  then
+    echo "$(chefvm current)"
+  fi
+}
+
+#export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\nchefvm: $(chefvm_version)\n› '
 export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
