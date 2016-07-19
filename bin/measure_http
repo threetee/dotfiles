@@ -1,7 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
 URL=$1
 
-echo
-echo "Measuring $URL"
-curl -s -k -o /dev/null -w "Connect: %{time_connect} TTFB: %{time_starttransfer} Total time: %{time_total} \n" $URL
+echo -n "Measuring $URL: "
+curl -s -k -o /dev/null -w "Response:%{response_code} Connect:%{time_connect}s TTFB:%{time_starttransfer}s Total:%{time_total}s \n" $URL

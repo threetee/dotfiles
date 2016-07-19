@@ -21,3 +21,6 @@ bind-key S command-prompt -p ssh: "new-window -n %1 'ssh %1'"
 # use | and - for horizontal and vertical splits, respectively
 bind-key | split-window -h
 bind-key - split-window -v
+
+run-shell "powerline-daemon -q"
+source "/Users/edennis/.local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf"
